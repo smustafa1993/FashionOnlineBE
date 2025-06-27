@@ -63,10 +63,27 @@ const verifyToken = (req, res, next) => {
   }
 }
 
+const checkAdmin = (req, res, next) => {
+  const { payload } = res.locals
+
+  try {
+    let isAdmin = payload.isAdmin
+
+    if(isAdmin) {
+      return next()
+    }
+
+    res.status(403).send({status: "Error", msg: "Not authorized!"})
+  } catch (error) {
+    res.status(500).send({status: "Error", msg: "Internal server error!!"})
+  }
+}
+
 module.exports = {
   hashPassword,
   comparePassword,
   createToken,
   stripToken,
-  verifyToken
+  verifyToken,
+  checkAdmin
 }
