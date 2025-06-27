@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const userSchema = require('./User')
-const productSchema = require('./Product')
+const prodSchema = require('./Product')
 
 const User = mongoose.model('User', userSchema)
-const Product = mongoose.model('Product', productSchema)
+const Product = mongoose.model('Product', prodSchema)
 
 module.exports = {
   User,
-  Product,
+  Product
 }
