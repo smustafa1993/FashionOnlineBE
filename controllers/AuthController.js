@@ -38,7 +38,7 @@ const Login = async (req, res) => {
       let payload = {
         id: user.id,
         email: user.email,
-        isAdmin: user.isAdmin
+        isAdmin: user.isAdmin //include the isAdmin field to then use it in checkAdmin
       }
       // Creates our JWT and packages it with our payload to send as a response
       let token = middleware.createToken(payload)

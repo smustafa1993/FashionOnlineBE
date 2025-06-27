@@ -67,12 +67,13 @@ const checkAdmin = (req, res, next) => {
   const { payload } = res.locals
 
   try {
+    //store isAdmin from payload into a var to then check its value
     let isAdmin = payload.isAdmin
-
+    //if the value is true then return next will ensure that it goes to either delete or update function
     if(isAdmin) {
       return next()
     }
-
+    //if not then it will be a 403 response which is unuathorized
     res.status(403).send({status: "Error", msg: "Not authorized!"})
   } catch (error) {
     res.status(500).send({status: "Error", msg: "Internal server error!!"})
