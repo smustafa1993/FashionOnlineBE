@@ -4,6 +4,9 @@ const middleware = require("../middleware")
 const GetProds = async (req, res) => {
     try {
         const prods = await Product.find({}).sort({ createdAt:-1})
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        res.setHeader("Pragma", "no-cache")
+        res.setHeader("Expires", "0")       
         res.status(200).send(prods)
     } catch (error) {
         throw error
@@ -16,6 +19,9 @@ const GetProdById = async (req, res) => {
         if(!prod){
             return res.status(404).send({ msg: "Product not found!!"})
         }
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0")
+        res.setHeader("Pragma", "no-cache")
+        res.setHeader("Expires", "0")        
         res.status(200).send(prod)
     } catch (error) {
         res.status(500).send({ msg: "Internal server errr" })
